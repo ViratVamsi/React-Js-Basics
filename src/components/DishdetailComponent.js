@@ -1,8 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, CardImg, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+
+class CommentForm extends Component{
+    render(){
+        return(
+            <button className="btn bg-primary">Submit</button>
+        );
+    }
+}
 
 const DishDetail = (props) => {
     if(props.dish!=null){
@@ -51,17 +59,20 @@ function RenderDish({dish}){
 function RenderComments({comments}){
     const cmnts = comments.map(comment => {
         return (
-            <li key={comment.id}>
-                <p>{comment.comment}</p>
-                <p>-- {comment.author},
-                &nbsp;
-                {new Intl.DateTimeFormat('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: '2-digit'
-                    }).format(new Date(comment.date))}
-                </p>
-            </li>
+            <>
+                <li key={comment.id}>
+                    <p>{comment.comment}</p>
+                    <p>-- {comment.author},
+                    &nbsp;
+                    {new Intl.DateTimeFormat('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: '2-digit'
+                        }).format(new Date(comment.date))}
+                    </p>
+                </li>  
+                <CommentForm />
+            </>
         )
     })
     return(
