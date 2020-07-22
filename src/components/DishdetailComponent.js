@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { addComment } from '../redux/ActionCreators';
 import { DISHES } from '../shared/dishes';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || val.length <= len;
@@ -134,7 +135,6 @@ const DishDetail = (props) => {
             <div className="container">
                 <div className="row">
                     <Breadcrumb>
-
                         <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
                         <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
                     </Breadcrumb>
@@ -168,7 +168,7 @@ const DishDetail = (props) => {
 function RenderDish({dish}){
     return(
         <Card>
-            <CardImg width="100%" top src={dish.image}></CardImg>
+            <CardImg top src={baseUrl + dish.image} alt={dish.name} />
             <CardBody>
                 <CardTitle>{dish.name}</CardTitle>
                 <CardText>{dish.description}</CardText>
